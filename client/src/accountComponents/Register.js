@@ -1,51 +1,60 @@
 import React, { useRef } from 'react'
 
 export default function Register() {
-    const email = useRef()
-    const password = useRef()
+  const email = useRef()
+  const password = useRef()
 
-    return (
-        <form onSubmit={register}>
-            <div class="container">
-                <h1>Register</h1>
-                <p>Please fill in this form to create an account.</p>
+  return (
+    <div className="container">
+      <div className="columns">
+        <div className="column is-half">
+          <form className = "field" onSubmit={register}>
+            <div>
+              <p>Please fill in this form to create an account.</p>
 
-                <label for="email"><b>Email</b></label>
-                <input ref = { email } type="text" placeholder="Enter Email" name="email" id="email" required />
+              <label className="label">Email</label>
+              <div className="control">
+                <input className="input" ref = { email } type="email" placeholder="Enter Email" name="email" id="email" required />
+              </div>
 
-                <label for="psw"><b>Password</b></label>
-                <input ref = { password } type="password" placeholder="Enter Password" name="psw" id="psw" required />
+              <label className="label">Password</label>
+              <div className="control">
+                <input className="input" ref = { password } type="password" placeholder="Enter Password" name="psw" id="psw" required />
+              </div>
 
-                <p>By creating an account you agree to our <a href="#">Terms and Privacy</a>.</p>
-                <button type="submit" class="registerbtn">Register</button>
+              <p>By creating an account you agree to our <a href="#">Terms and Privacy</a>.</p>
+              <button type="submit" className="button">Register</button>
             </div>
 
-            <div class="container signin">
-                <p>Already have an account? <a href="/signin">Sign in</a>.</p>
+            <div className="container signin">
+              <p>Already have an account? <a href="/signin">Sign in</a>.</p>
             </div>
-        </form>
-    )
+          </form>
+        </div>
+      </div>
+    </div>
+  )
 
 
-    async function register(e) {
-        try {
-            e.preventDefault();
-            let formData =  {
-                email: email.current.value,
-                password: password.current.value
-            }
-            formData = JSON.stringify(formData)
-            const response = await fetch('/register', {
-                method: 'POST',
-                body: formData,
-                headers: { 'Content-Type': 'application/json' }
-            })
-            const result = await response.json()
-            console.log(result)
-        } catch (err) {
-            alert(err)
-            return null
-        }
+  async function register(e) {
+    try {
+      e.preventDefault();
+      let formData =  {
+        email: email.current.value,
+        password: password.current.value
+      }
+      formData = JSON.stringify(formData)
+      const response = await fetch('/register', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Content-Type': 'application/json' }
+      })
+      const result = await response.json()
+      console.log(result)
+    } catch (err) {
+      alert(err)
+      return null
     }
+  }
 
 }

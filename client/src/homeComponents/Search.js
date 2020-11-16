@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import React, { useRef } from 'react';
+import 'bulma/css/bulma.css';
 
 export default function Search() {
     const searchBar = useRef()
@@ -8,10 +9,12 @@ export default function Search() {
         window.location = `/${symbol}`
     }
     return (
-        <div>
-            <label>Type a Stock Ticker</label>
-            <input ref={searchBar} input="text" className="search" placeholder="AMD" />
-            <button onClick={getStock}>Search</button>
+        <div className="level">
+          <div className="level-left">
+            <label className="level-item mr-2">Type a Stock Ticker</label>
+            <input ref={searchBar} input="text" className="search level-item mr-2" placeholder="AMD" />
+            <button className="button is-rounded level-item" onClick={getStock}>Search</button>
+      </div>
         </div>
     )
 }
